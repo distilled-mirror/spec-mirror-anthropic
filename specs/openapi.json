@@ -56018,7 +56018,7 @@
       },
       "post": {
         "summary": "Update External Key",
-        "description": "Partially update an external key config. Omitted fields are left unchanged.\n\n`display_name` is always editable. `geo` and `provider_config` cannot\nbe changed once any workspace references this config, because previously\nencrypted data requires the original key identity to decrypt.",
+        "description": "Partially update an external key config. Omitted fields are left unchanged.\n\n`display_name` is always editable. `geo` and `provider_config` cannot\nbe changed once any workspace references this config, and a Google Cloud\nkey's provider and `key_name` cannot be changed at all.",
         "operationId": "beta_update_external_key_v1_organizations_external_keys__external_key_id__post",
         "parameters": [
           {
@@ -73792,7 +73792,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -74450,7 +74509,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -74805,7 +74923,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -75911,7 +76088,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -76600,7 +76836,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -76800,7 +77095,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -77099,7 +77453,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -77341,7 +77754,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -77591,7 +78063,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -78327,7 +78858,66 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BetaErrorResponse"
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
                 }
               }
             }
@@ -78495,6 +79085,2600 @@
         },
         "x-anthropic-beta-required": [
           "ce-plugins-2026-09-01"
+        ]
+      }
+    },
+    "/v1/organizations/claude_code/managed_settings/configuration?beta=true": {
+      "get": {
+        "summary": "Get Claude Code Managed Settings Configuration",
+        "description": "Retrieve the organization's Claude Code managed settings mode and RBAC Group order.\n\n**Accepted credentials:** an organization-level Admin API key with the `read:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.",
+        "operationId": "beta_get_claude_code_managed_settings_configuration_v1_organizations_claude_code_managed_settings_configuration_get",
+        "parameters": [
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      },
+      "post": {
+        "summary": "Update Claude Code Managed Settings Configuration",
+        "description": "Change the organization's Claude Code managed settings mode, the RBAC Group order, or both, in one atomic write.\n\nTo change the order, send `rbac_group_order` with the `rbac_group_order_version` from the read the change is based on. If the order has changed since that read, the request returns `409`: read it again and retry. To switch modes only if the order has not changed, send the current `rbac_group_order` and `rbac_group_order_version` with the new `mode`.\n\nA switch to `rbac_groups` mode with no RBAC Group settings and no default settings copies the organization settings into a new default, in the same write, so members keep the settings they had. The copy does not follow later changes to the organization settings. If the organization settings cannot be copied, the request returns `400` and changes nothing. If they cannot be read, are over 1 MiB or are not valid, setting the default settings first avoids the copy.\n\nAfter a switch to `rbac_groups` mode, a member in no listed RBAC Group receives the default settings, or no settings if no default is set, not the organization settings.\n\n**Accepted credentials:** an organization-level Admin API key with the `write:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.\n\nA write that returns `503` may have applied. Retrying it is safe.",
+        "operationId": "beta_update_claude_code_managed_settings_configuration_v1_organizations_claude_code_managed_settings_configuration_post",
+        "parameters": [
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaRequestBodyTimeoutErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsDocumentLimitExceededErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsHistoryLimitExceededErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsConfigurationUpdateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      }
+    },
+    "/v1/organizations/claude_code/managed_settings/rbac_groups?beta=true": {
+      "get": {
+        "summary": "List RBAC Group Claude Code Managed Settings",
+        "description": "List the RBAC Groups that have Claude Code managed settings, highest precedence first.\n\nEach entry gives the group's status and timestamps, not its settings. The list includes deleted groups that still have settings, and leaves out the default settings. If the order changes between pages, the request returns `409`: list again from the first page.\n\n**Accepted credentials:** an organization-level Admin API key with the `read:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.",
+        "operationId": "beta_list_claude_code_rbac_group_managed_settings_v1_organizations_claude_code_managed_settings_rbac_groups_get",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Optionally set to the `next_page` token from the previous response.",
+              "title": "Page"
+            },
+            "description": "Optionally set to the `next_page` token from the previous response."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "title": "Limit"
+            },
+            "description": "Number of items to return per page.\n\nDefaults to `20`. Ranges from `1` to `100`."
+          },
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettingsList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      }
+    },
+    "/v1/organizations/claude_code/managed_settings/rbac_groups/{rbac_group_id}?beta=true": {
+      "get": {
+        "summary": "Get RBAC Group Claude Code Managed Settings",
+        "description": "Retrieve an RBAC Group's Claude Code managed settings.\n\n**Accepted credentials:** an organization-level Admin API key with the `read:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.",
+        "operationId": "beta_get_claude_code_rbac_group_managed_settings_v1_organizations_claude_code_managed_settings_rbac_groups__rbac_group_id__get",
+        "parameters": [
+          {
+            "name": "rbac_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+              "x-stainless-cli-data-alias": "id",
+              "title": "Rbac Group Id"
+            },
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`."
+          },
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekFeatureUnsupportedErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaRbacGroupManagedSettingsNotFoundErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Not found"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "not_found_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "not_found_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "NotFoundError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      },
+      "post": {
+        "summary": "Set RBAC Group Claude Code Managed Settings",
+        "description": "Create or replace an RBAC Group's Claude Code managed settings.\n\nNew settings join the end of `rbac_group_order`, and existing settings keep their place. Until the group is moved up, its members who also belong to an earlier group keep that group's settings. In `organization` mode a write changes no member's settings until the organization switches to `rbac_groups` mode. Once a group has settings, that switch no longer copies the organization settings into default settings, so members in no RBAC Group in `rbac_group_order` receive no settings unless you set the default settings before the switch.\n\nGet the group's ID from the RBAC Groups API. One key can hold `read:rbac_groups` and `write:claude_code_managed_settings`.\n\n**Accepted credentials:** an organization-level Admin API key with the `write:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.\n\nA write that returns `503` may have applied. Retrying it is safe.",
+        "operationId": "beta_set_claude_code_rbac_group_managed_settings_v1_organizations_claude_code_managed_settings_rbac_groups__rbac_group_id__post",
+        "parameters": [
+          {
+            "name": "rbac_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+              "x-stainless-cli-data-alias": "id",
+              "title": "Rbac Group Id"
+            },
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`."
+          },
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekFeatureUnsupportedErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaRbacGroupOrderLimitExceededErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaRequestBodyTimeoutErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsDocumentLimitExceededErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsHistoryLimitExceededErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaRbacGroupNotFoundErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Not found"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "not_found_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "not_found_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "NotFoundError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettingsSetParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      },
+      "delete": {
+        "summary": "Delete RBAC Group Claude Code Managed Settings",
+        "description": "Delete an RBAC Group's Claude Code managed settings and remove the group from `rbac_group_order`.\n\nA group with no settings returns `404` with the error code `rbac_group_managed_settings_not_found`. That code on a retry of a delete that returned `503` means the settings are gone.\n\n**Accepted credentials:** an organization-level Admin API key with the `write:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.\n\nA write that returns `503` may have applied. Retrying it is safe.",
+        "operationId": "beta_delete_claude_code_rbac_group_managed_settings_v1_organizations_claude_code_managed_settings_rbac_groups__rbac_group_id__delete",
+        "parameters": [
+          {
+            "name": "rbac_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+              "x-stainless-cli-data-alias": "id",
+              "title": "Rbac Group Id"
+            },
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`."
+          },
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettingsDeleted"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsHistoryLimitExceededErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaRbacGroupManagedSettingsNotFoundErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Not found"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "not_found_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "not_found_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "NotFoundError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      }
+    },
+    "/v1/organizations/claude_code/managed_settings/rbac_group_default?beta=true": {
+      "get": {
+        "summary": "Get RBAC Group Default Claude Code Managed Settings",
+        "description": "Retrieve the default Claude Code managed settings, which members who belong to no RBAC Group in `rbac_group_order` receive in `rbac_groups` mode.\n\n**Accepted credentials:** an organization-level Admin API key with the `read:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.",
+        "operationId": "beta_get_claude_code_rbac_group_default_managed_settings_v1_organizations_claude_code_managed_settings_rbac_group_default_get",
+        "parameters": [
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupDefaultManagedSettings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekFeatureUnsupportedErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
+        ]
+      },
+      "post": {
+        "summary": "Update RBAC Group Default Claude Code Managed Settings",
+        "description": "Set or replace the default Claude Code managed settings, or clear them with `null`.\n\n**Accepted credentials:** an organization-level Admin API key with the `write:claude_code_managed_settings` scope.\n\nEvery request must include the beta header `anthropic-beta: ce-claude-code-managed-settings-2026-10-06`. A request without it, or from an organization not enabled for this beta, returns `404`. The Claude Code Managed Settings API is in beta and is available to Claude Enterprise organizations only.\n\nA write that returns `503` may have applied. Retrying it is safe.",
+        "operationId": "beta_update_claude_code_rbac_group_default_managed_settings_v1_organizations_claude_code_managed_settings_rbac_group_default_post",
+        "parameters": [
+          {
+            "name": "anthropic-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning).",
+              "title": "Anthropic-Version"
+            },
+            "description": "The version of the Claude API you want to use.\n\nRead more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning)."
+          },
+          {
+            "name": "anthropic-beta",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AnthropicBeta"
+              },
+              "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header.",
+              "x-stainless-param": "betas",
+              "x-stainless-extend-default": true,
+              "title": "Anthropic-Beta"
+            },
+            "description": "This endpoint is in beta: requests must send `ce-claude-code-managed-settings-2026-10-06` in this header."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupDefaultManagedSettings"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument - The client specified an invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaCmekFeatureUnsupportedErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaCmekKeyDisabledErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaRequestBodyTimeoutErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsDocumentLimitExceededErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaSettingsHistoryLimitExceededErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Details",
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Invalid request"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "invalid_request_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "invalid_request_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "InvalidRequestError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthenticated - The request does not have valid authentication credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Permission denied - The caller does not have permission to execute the specified operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "details": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/BetaSandboxEgressRestrictedErrorDetails"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "description": "Machine-readable detail about the cause of the error. `error_code` names the cause; branch on it rather than on `message`. Absent when the error has no code. Treat an unrecognized `error_code` as the bare `type`."
+                        },
+                        "message": {
+                          "type": "string",
+                          "title": "Message",
+                          "description": "A human-readable explanation of the error. Its wording can change, so don't match on it.",
+                          "default": "Permission denied"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "permission_error",
+                          "title": "Type",
+                          "description": "The broad category of the error.",
+                          "default": "permission_error"
+                        }
+                      },
+                      "type": "object",
+                      "required": [
+                        "message",
+                        "type"
+                      ],
+                      "title": "PermissionError"
+                    },
+                    "request_id": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Request Id"
+                    },
+                    "type": {
+                      "type": "string",
+                      "const": "error",
+                      "title": "Type",
+                      "default": "error"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "error",
+                    "request_id",
+                    "type"
+                  ],
+                  "title": "ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Some requested entity was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Deadline exceeded - The deadline expired before the operation could complete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Aborted - The operation was aborted due to concurrency issue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "Failed precondition - Operation was rejected because the system is not in required state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Out of range - Operation was attempted past the valid range",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Resource exhausted - Some resource has been exhausted (rate limiting)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "431": {
+            "description": "Request header fields too large - Request metadata was too large",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "499": {
+            "description": "Cancelled - The operation was cancelled by the client",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal - Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "501": {
+            "description": "Unimplemented - The operation is not implemented or supported",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Unavailable - The service is currently unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Deadline exceeded - Upstream service did not respond in time",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          },
+          "529": {
+            "description": "Overloaded - The service is temporarily overloaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BetaErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupDefaultManagedSettingsUpdateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "x-anthropic-beta-required": [
+          "ce-claude-code-managed-settings-2026-10-06"
         ]
       }
     },
@@ -80107,7 +83291,7 @@
     "/v1/organizations/analytics/user_usage_report?beta=true": {
       "get": {
         "summary": "Get Per-User Token Usage",
-        "description": "[Legacy] Get per-user token usage across a date range.\n\nReturns usage per user, ranked by the chosen token metric; `group_by[]` or `bucket_width` splits a user across several rows. Use this to see which users consume the most tokens. Only usage attributed to a user account is included, so usage with no user account, such as Code Review usage and Claude Tag usage in Slack channels, is left out. Claude Tag one-to-one direct messages are included, with product `claude-tag`, only for members who have connected a Claude account. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.\n\nThis endpoint is one of the legacy Claude Enterprise usage and cost reports. For new integrations, use [`GET /v1/organizations/analytics/usage`](/docs/en/api/beta/organization/analytics/usage/list) in the Usage and Cost Analytics API instead. To move an existing integration, see [Migrate from the Claude Enterprise usage and cost reports](/docs/en/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).",
+        "description": "[Legacy] Get per-user token usage across a date range.\n\nReturns usage per user, ranked by the chosen token metric; `group_by[]` or `bucket_width` splits a user across several rows. Use this to see which users consume the most tokens. Only usage attributed to a user account is included, so usage with no user account, such as Code Review usage and Claude Tag usage in Slack channels, is left out. Claude Tag one-to-one direct messages are included, with product `claude-tag`, only for members who have connected a Claude account. To see all usage by product, call `GET /v1/organizations/analytics/usage_report` with `group_by[]=product`. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.\n\nThis endpoint is one of the legacy Claude Enterprise usage and cost reports. For new integrations, use [`GET /v1/organizations/analytics/usage`](/docs/en/api/beta/organization/analytics/usage/list) in the Usage and Cost Analytics API instead. To move an existing integration, see [Migrate from the Claude Enterprise usage and cost reports](/docs/en/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).",
         "operationId": "beta_get_user_usage_report_v1_organizations_analytics_user_usage_report_get",
         "parameters": [
           {
@@ -80715,7 +83899,7 @@
     "/v1/organizations/analytics/user_cost_report?beta=true": {
       "get": {
         "summary": "Get Per-User Cost",
-        "description": "[Legacy] Get per-user cost in USD across a date range.\n\nReturns cost per user, ranked by spend; `group_by[]` or `bucket_width` splits a user across several rows. Use this to see which users account for the most cost. Only cost attributed to a user account is included, so cost with no user account, such as Code Review usage and Claude Tag usage in Slack channels, is left out. Claude Tag one-to-one direct messages are included, with product `claude-tag`, only for members who have connected a Claude account. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.\n\nThis endpoint is one of the legacy Claude Enterprise usage and cost reports. For new integrations, use [`GET /v1/organizations/analytics/cost`](/docs/en/api/beta/organization/analytics/cost/list) in the Usage and Cost Analytics API instead. To move an existing integration, see [Migrate from the Claude Enterprise usage and cost reports](/docs/en/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).",
+        "description": "[Legacy] Get per-user cost in USD across a date range.\n\nReturns cost per user, ranked by spend; `group_by[]` or `bucket_width` splits a user across several rows. Use this to see which users account for the most cost. Only cost attributed to a user account is included, so cost with no user account, such as Code Review usage and Claude Tag usage in Slack channels, is left out. Claude Tag one-to-one direct messages are included, with product `claude-tag`, only for members who have connected a Claude account. To see all cost by product, call `GET /v1/organizations/analytics/cost_report` with `group_by[]=product`. Available to organizations on a Claude Enterprise plan. Requires an API key with the `read:analytics` scope.\n\nThis endpoint is one of the legacy Claude Enterprise usage and cost reports. For new integrations, use [`GET /v1/organizations/analytics/cost`](/docs/en/api/beta/organization/analytics/cost/list) in the Usage and Cost Analytics API instead. To move an existing integration, see [Migrate from the Claude Enterprise usage and cost reports](/docs/en/manage-claude/usage-cost-analytics-api#migrate-from-enterprise-analytics-reports).",
         "operationId": "beta_get_user_cost_report_v1_organizations_analytics_user_cost_report_get",
         "parameters": [
           {
@@ -93519,7 +96703,7 @@
       },
       "post": {
         "summary": "Update External Key",
-        "description": "Partially update an external key config. Omitted fields are left unchanged.\n\n`display_name` is always editable. `geo` and `provider_config` cannot\nbe changed once any workspace references this config, because previously\nencrypted data requires the original key identity to decrypt.",
+        "description": "Partially update an external key config. Omitted fields are left unchanged.\n\n`display_name` is always editable. `geo` and `provider_config` cannot\nbe changed once any workspace references this config, and a Google Cloud\nkey's provider and `key_name` cannot be changed at all.",
         "operationId": "update_external_key_v1_organizations_external_keys__external_key_id__post",
         "parameters": [
           {
@@ -109269,6 +112453,7 @@
               "skills-2025-10-02",
               "cache-diagnosis-2026-04-07",
               "ce-user-management-2026-07-13",
+              "ce-claude-code-managed-settings-2026-10-06",
               "user-profiles-billing-2026-10-01"
             ],
             "x-stainless-enum-deprecations": [
@@ -114446,6 +117631,13 @@
           "keep": {
             "anyOf": [
               {
+                "discriminator": {
+                  "mapping": {
+                    "all": "#/components/schemas/BetaAllThinkingTurns",
+                    "thinking_turns": "#/components/schemas/BetaThinkingTurns"
+                  },
+                  "propertyName": "type"
+                },
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/BetaThinkingTurns"
@@ -124194,6 +127386,13 @@
                 "$ref": "#/components/schemas/BetaManagedAgentsAgentWithOverridesParams"
               }
             ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "agent": "#/components/schemas/BetaManagedAgentsAgentParams",
+                "agent_with_overrides": "#/components/schemas/BetaManagedAgentsAgentWithOverridesParams"
+              }
+            },
             "x-stainless-collapse": true
           }
         ]
@@ -126098,25 +129297,8 @@
             "$ref": "#/components/schemas/BetaManagedAgentsEffortLevel"
           },
           {
-            "description": "How hard Claude works on each turn. Sets `output_config.effort` on every Messages call the session makes.",
-            "type": "object",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/BetaManagedAgentsEffortLow"
-              },
-              {
-                "$ref": "#/components/schemas/BetaManagedAgentsEffortMedium"
-              },
-              {
-                "$ref": "#/components/schemas/BetaManagedAgentsEffortHigh"
-              },
-              {
-                "$ref": "#/components/schemas/BetaManagedAgentsEffortXhigh"
-              },
-              {
-                "$ref": "#/components/schemas/BetaManagedAgentsEffortMax"
-              }
-            ]
+            "$ref": "#/components/schemas/BetaManagedAgentsEffort",
+            "x-stainless-collapse": true
           }
         ]
       },
@@ -131194,6 +134376,13 @@
                 "$ref": "#/components/schemas/BetaManagedAgentsMultiagentSelfParams"
               }
             ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "agent": "#/components/schemas/BetaManagedAgentsAgentParams",
+                "self": "#/components/schemas/BetaManagedAgentsMultiagentSelfParams"
+              }
+            },
             "x-stainless-collapse": true
           }
         ]
@@ -131234,6 +134423,14 @@
                 "$ref": "#/components/schemas/BetaManagedAgentsAdvisorParams"
               }
             ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "agent": "#/components/schemas/BetaManagedAgentsAgentParams",
+                "self": "#/components/schemas/BetaManagedAgentsMultiagentSelfParams",
+                "advisor": "#/components/schemas/BetaManagedAgentsAdvisorParams"
+              }
+            },
             "x-stainless-collapse": true
           }
         ]
@@ -140523,7 +143720,7 @@
           "stop_details": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/BetaRefusalStopDetails"
+                "$ref": "#/components/schemas/BetaStopDetails"
               },
               {
                 "type": "null"
@@ -140839,7 +144036,7 @@
           "stop_details": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/BetaRefusalStopDetails"
+                "$ref": "#/components/schemas/BetaStopDetails"
               },
               {
                 "type": "null"
@@ -150677,6 +153874,19 @@
           "fast"
         ],
         "type": "string"
+      },
+      "BetaStopDetails": {
+        "discriminator": {
+          "mapping": {
+            "refusal": "#/components/schemas/BetaRefusalStopDetails"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BetaRefusalStopDetails"
+          }
+        ]
       },
       "BetaStopReason": {
         "enum": [
@@ -164362,7 +167572,7 @@
           "stop_details": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/RefusalStopDetails"
+                "$ref": "#/components/schemas/StopDetails"
               },
               {
                 "type": "null"
@@ -164643,7 +167853,7 @@
           "stop_details": {
             "anyOf": [
               {
-                "$ref": "#/components/schemas/RefusalStopDetails"
+                "$ref": "#/components/schemas/StopDetails"
               },
               {
                 "type": "null"
@@ -172009,6 +175219,19 @@
         ],
         "type": "string"
       },
+      "StopDetails": {
+        "discriminator": {
+          "mapping": {
+            "refusal": "#/components/schemas/RefusalStopDetails"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/RefusalStopDetails"
+          }
+        ]
+      },
       "StopReason": {
         "enum": [
           "end_turn",
@@ -177126,7 +180349,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -177454,7 +180677,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -178257,7 +181480,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude_tag`, and `chat_cowork_unified`. `claude_tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude_tag`, and `chat_cowork_unified`. `claude_tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -178797,7 +182020,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude_tag`, and `chat_cowork_unified`. `claude_tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude_tag`, and `chat_cowork_unified`. `claude_tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -180828,7 +184051,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -181174,7 +184397,7 @@
                 "type": "null"
               }
             ],
-            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as \"other\".",
+            "description": "Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as \"other\".",
             "examples": [
               "chat",
               "claude_code",
@@ -182384,6 +185607,497 @@
         ],
         "title": "ClaudeCodeApiActor"
       },
+      "BetaClaudeCodeManagedSettingsConfiguration": {
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsMode",
+            "description": "How the organization serves managed settings. In `organization` mode every member receives the organization settings, which are set in claude.ai. In `rbac_groups` mode each member receives the settings of the first RBAC Group in `rbac_group_order` that they belong to. A member in none of them receives the default settings, or no settings if no default is set."
+          },
+          "mode_updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode Updated At",
+            "description": "When the mode last changed, in RFC 3339 format, or `null` if it never has."
+          },
+          "rbac_group_order": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Rbac Group Order",
+            "description": "The ID of every RBAC Group with settings, deleted groups included, highest precedence first.",
+            "examples": [
+              [
+                "rbac_group_012rppKaSVsmTo6NqRDXQXNF"
+              ]
+            ]
+          },
+          "rbac_group_order_version": {
+            "type": "string",
+            "title": "Rbac Group Order Version",
+            "description": "An opaque version of `rbac_group_order`, which changes whenever the order does. Send it back with a new order."
+          },
+          "type": {
+            "type": "string",
+            "const": "claude_code_managed_settings_configuration",
+            "title": "Type",
+            "description": "Always `claude_code_managed_settings_configuration`.",
+            "default": "claude_code_managed_settings_configuration"
+          }
+        },
+        "type": "object",
+        "required": [
+          "mode",
+          "mode_updated_at",
+          "rbac_group_order",
+          "rbac_group_order_version",
+          "type"
+        ],
+        "title": "ClaudeCodeManagedSettingsConfiguration"
+      },
+      "BetaClaudeCodeManagedSettingsConfigurationUpdateParams": {
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsModeParams",
+            "description": "The new mode, as an object such as `{\"type\": \"rbac_groups\"}`.",
+            "title": "Mode"
+          },
+          "rbac_group_order": {
+            "description": "Every RBAC Group that has settings, each listed once, in the new order, highest precedence first. Requires `rbac_group_order_version`.",
+            "items": {
+              "type": "string"
+            },
+            "title": "Rbac Group Order",
+            "type": "array"
+          },
+          "rbac_group_order_version": {
+            "description": "The `rbac_group_order_version` from the read this change is based on. Requires `rbac_group_order`.",
+            "title": "Rbac Group Order Version",
+            "type": "string"
+          }
+        },
+        "title": "ClaudeCodeManagedSettingsConfigurationUpdateParams",
+        "type": "object"
+      },
+      "BetaClaudeCodeManagedSettingsMode": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsOrganizationMode"
+          },
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsRbacGroupsMode"
+          }
+        ],
+        "title": "ClaudeCodeManagedSettingsMode",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "organization": "#/components/schemas/BetaClaudeCodeManagedSettingsOrganizationMode",
+            "rbac_groups": "#/components/schemas/BetaClaudeCodeManagedSettingsRbacGroupsMode"
+          }
+        }
+      },
+      "BetaClaudeCodeManagedSettingsModeParams": {
+        "discriminator": {
+          "mapping": {
+            "organization": "#/components/schemas/BetaClaudeCodeManagedSettingsOrganizationModeParams",
+            "rbac_groups": "#/components/schemas/BetaClaudeCodeManagedSettingsRbacGroupsModeParams"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsOrganizationModeParams"
+          },
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeManagedSettingsRbacGroupsModeParams"
+          }
+        ],
+        "title": "ClaudeCodeManagedSettingsModeParams"
+      },
+      "BetaClaudeCodeManagedSettingsOrganizationMode": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "organization",
+            "title": "Type",
+            "description": "Always `organization`.",
+            "default": "organization"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeManagedSettingsOrganizationMode"
+      },
+      "BetaClaudeCodeManagedSettingsOrganizationModeParams": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "organization",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeManagedSettingsOrganizationModeParams",
+        "type": "object"
+      },
+      "BetaClaudeCodeManagedSettingsRbacGroupsMode": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "rbac_groups",
+            "title": "Type",
+            "description": "Always `rbac_groups`.",
+            "default": "rbac_groups"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeManagedSettingsRbacGroupsMode"
+      },
+      "BetaClaudeCodeManagedSettingsRbacGroupsModeParams": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "const": "rbac_groups",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeManagedSettingsRbacGroupsModeParams",
+        "type": "object"
+      },
+      "BetaClaudeCodeRbacGroupDefaultManagedSettings": {
+        "properties": {
+          "settings": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settings",
+            "description": "The default settings document, or `null` if none are set or the stored document is damaged and can no longer be read. To tell these apart, `updated_at` is `null` only when none are set. Replacing a damaged document fixes this."
+          },
+          "type": {
+            "type": "string",
+            "const": "claude_code_rbac_group_default_managed_settings",
+            "title": "Type",
+            "description": "Always `claude_code_rbac_group_default_managed_settings`.",
+            "default": "claude_code_rbac_group_default_managed_settings"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At",
+            "description": "When the default settings last changed, in RFC 3339 format, or `null` if none are set."
+          }
+        },
+        "type": "object",
+        "required": [
+          "settings",
+          "type",
+          "updated_at"
+        ],
+        "title": "ClaudeCodeRbacGroupDefaultManagedSettings"
+      },
+      "BetaClaudeCodeRbacGroupDefaultManagedSettingsUpdateParams": {
+        "additionalProperties": false,
+        "properties": {
+          "settings": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The whole settings document, a JSON object of Claude Code managed settings. It replaces any stored document, or `null` clears the default settings. At most 1 MiB as the server stores it, which can be larger than the request body.",
+            "title": "Settings",
+            "x-stainless-description": {
+              "go": "The whole settings document, a JSON object of Claude Code managed settings. It replaces any stored document. At most 1 MiB as the server stores it, which can be larger than the request body.\n\nTo clear the default settings, set `Settings` to `param.NullMap[map[string]any]()`. If `Settings` is nil, the API returns a `400`. An empty map stores an empty document instead of clearing the default settings."
+            }
+          }
+        },
+        "required": [
+          "settings"
+        ],
+        "title": "ClaudeCodeRbacGroupDefaultManagedSettingsUpdateParams",
+        "type": "object"
+      },
+      "BetaClaudeCodeRbacGroupManagedSettings": {
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "When the settings document this group uses was first stored, in RFC 3339 format. This can be earlier than when the group got its settings, and it changes if the group gets a different document."
+          },
+          "rbac_group_id": {
+            "type": "string",
+            "title": "Rbac Group Id",
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+            "examples": [
+              "rbac_group_012rppKaSVsmTo6NqRDXQXNF"
+            ]
+          },
+          "rbac_group_status": {
+            "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupStatus",
+            "description": "Whether the group is still one of the organization's RBAC Groups. Its `type` is `active` if it is, `deleted` if it is not, and `unknown` if that cannot be checked right now. A deleted group's settings stay in `rbac_group_order` but match no member."
+          },
+          "settings": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settings",
+            "description": "The group's settings document, or `null` if the stored document is damaged and can no longer be read. Replacing it fixes this."
+          },
+          "type": {
+            "type": "string",
+            "const": "claude_code_rbac_group_managed_settings",
+            "title": "Type",
+            "description": "Always `claude_code_rbac_group_managed_settings`.",
+            "default": "claude_code_rbac_group_managed_settings"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "When this group's settings or its position in the order last changed, in RFC 3339 format. Its position changes whenever the number of groups ahead of it changes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "created_at",
+          "rbac_group_id",
+          "rbac_group_status",
+          "settings",
+          "type",
+          "updated_at"
+        ],
+        "title": "ClaudeCodeRbacGroupManagedSettings"
+      },
+      "BetaClaudeCodeRbacGroupManagedSettingsDeleted": {
+        "properties": {
+          "rbac_group_id": {
+            "type": "string",
+            "title": "Rbac Group Id",
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+            "examples": [
+              "rbac_group_012rppKaSVsmTo6NqRDXQXNF"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "const": "claude_code_rbac_group_managed_settings_deleted",
+            "title": "Type",
+            "description": "Always `claude_code_rbac_group_managed_settings_deleted`.",
+            "default": "claude_code_rbac_group_managed_settings_deleted"
+          }
+        },
+        "type": "object",
+        "required": [
+          "rbac_group_id",
+          "type"
+        ],
+        "title": "ClaudeCodeRbacGroupManagedSettingsDeleted"
+      },
+      "BetaClaudeCodeRbacGroupManagedSettingsList": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupManagedSettingsSummary"
+            },
+            "type": "array",
+            "title": "Data",
+            "description": "The RBAC Groups with settings on this page, highest precedence first."
+          },
+          "next_page": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Page",
+            "description": "Token to provide in as `page` in the subsequent request to retrieve the next page of data."
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "next_page"
+        ],
+        "title": "ClaudeCodeRbacGroupManagedSettingsList"
+      },
+      "BetaClaudeCodeRbacGroupManagedSettingsSetParams": {
+        "additionalProperties": false,
+        "properties": {
+          "settings": {
+            "additionalProperties": true,
+            "description": "The whole settings document, a JSON object of Claude Code managed settings. It replaces any stored document. At most 1 MiB as the server stores it, which can be larger than the request body.",
+            "title": "Settings",
+            "type": "object"
+          }
+        },
+        "required": [
+          "settings"
+        ],
+        "title": "ClaudeCodeRbacGroupManagedSettingsSetParams",
+        "type": "object"
+      },
+      "BetaClaudeCodeRbacGroupManagedSettingsSummary": {
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "When the settings document this group uses was first stored, in RFC 3339 format. This can be earlier than when the group got its settings, and it changes if the group gets a different document."
+          },
+          "rbac_group_id": {
+            "type": "string",
+            "title": "Rbac Group Id",
+            "description": "The RBAC Group's ID, prefixed `rbac_group_`.",
+            "examples": [
+              "rbac_group_012rppKaSVsmTo6NqRDXQXNF"
+            ]
+          },
+          "rbac_group_status": {
+            "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupStatus",
+            "description": "Whether the group is still one of the organization's RBAC Groups. Its `type` is `active` if it is, `deleted` if it is not, and `unknown` if that cannot be checked right now. A deleted group's settings stay in `rbac_group_order` but match no member."
+          },
+          "type": {
+            "type": "string",
+            "const": "claude_code_rbac_group_managed_settings_summary",
+            "title": "Type",
+            "description": "Always `claude_code_rbac_group_managed_settings_summary`.",
+            "default": "claude_code_rbac_group_managed_settings_summary"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At",
+            "description": "When this group's settings or its position in the order last changed, in RFC 3339 format. Its position changes whenever the number of groups ahead of it changes."
+          }
+        },
+        "type": "object",
+        "required": [
+          "created_at",
+          "rbac_group_id",
+          "rbac_group_status",
+          "type",
+          "updated_at"
+        ],
+        "title": "ClaudeCodeRbacGroupManagedSettingsSummary"
+      },
+      "BetaClaudeCodeRbacGroupStatus": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupStatusActive"
+          },
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupStatusDeleted"
+          },
+          {
+            "$ref": "#/components/schemas/BetaClaudeCodeRbacGroupStatusUnknown"
+          }
+        ],
+        "title": "ClaudeCodeRbacGroupStatus",
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "active": "#/components/schemas/BetaClaudeCodeRbacGroupStatusActive",
+            "deleted": "#/components/schemas/BetaClaudeCodeRbacGroupStatusDeleted",
+            "unknown": "#/components/schemas/BetaClaudeCodeRbacGroupStatusUnknown"
+          }
+        }
+      },
+      "BetaClaudeCodeRbacGroupStatusActive": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "active",
+            "title": "Type",
+            "description": "Always `active`.",
+            "default": "active"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeRbacGroupStatusActive"
+      },
+      "BetaClaudeCodeRbacGroupStatusDeleted": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "deleted",
+            "title": "Type",
+            "description": "Always `deleted`.",
+            "default": "deleted"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeRbacGroupStatusDeleted"
+      },
+      "BetaClaudeCodeRbacGroupStatusUnknown": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "unknown",
+            "title": "Type",
+            "description": "Always `unknown`.",
+            "default": "unknown"
+          }
+        },
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "title": "ClaudeCodeRbacGroupStatusUnknown"
+      },
       "BetaClaudeCodeUsageReportItem": {
         "properties": {
           "actor": {
@@ -182596,6 +186310,21 @@
         ],
         "title": "ClaudeEnterpriseOrganizationRole",
         "description": "Organization role values for Claude Enterprise organizations."
+      },
+      "BetaCmekFeatureUnsupportedErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "cmek_feature_unsupported",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "CmekFeatureUnsupportedErrorDetails",
+        "description": "This stored settings document currently cannot be read or replaced. Contact support, or, if you no longer need these settings, delete the group's settings or clear the default."
       },
       "BetaComplianceSettings": {
         "properties": {
@@ -184009,7 +187738,7 @@
         "additionalProperties": false,
         "type": "object",
         "title": "ExternalKeyUpdateParams",
-        "description": "Partial update — omitted fields are unchanged.\n\n`display_name` is always editable. `geo` and `provider_config`\ncannot be changed once any workspace references this config."
+        "description": "Partial update — omitted fields are unchanged.\n\n`display_name` is always editable. `geo` and `provider_config`\ncannot be changed once any workspace references this config, and a Google\nCloud key's provider and `key_name` cannot be changed at all."
       },
       "BetaExternalKeyValidationFailedErrorDetails": {
         "properties": {
@@ -188178,7 +191907,7 @@
           "type": {
             "type": "string",
             "title": "Type",
-            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`)."
+            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`)."
           },
           "value": {
             "type": "integer",
@@ -188356,6 +192085,21 @@
         ],
         "title": "RbacGroupList"
       },
+      "BetaRbacGroupManagedSettingsNotFoundErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "rbac_group_managed_settings_not_found",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "RbacGroupManagedSettingsNotFoundErrorDetails",
+        "description": "This RBAC Group has no Claude Code managed settings."
+      },
       "BetaRbacGroupMember": {
         "properties": {
           "created_at": {
@@ -188449,6 +192193,36 @@
           "next_page"
         ],
         "title": "RbacGroupMemberList"
+      },
+      "BetaRbacGroupNotFoundErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "rbac_group_not_found",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "RbacGroupNotFoundErrorDetails",
+        "description": "The RBAC Group is not one of the organization's groups."
+      },
+      "BetaRbacGroupOrderLimitExceededErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "rbac_group_order_limit_exceeded",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "RbacGroupOrderLimitExceededErrorDetails",
+        "description": "The RBAC Group order already has the most groups allowed. Delete another group's settings first."
       },
       "BetaRbacGroupOwnerAccessUnconfirmedErrorDetails": {
         "properties": {
@@ -188806,6 +192580,21 @@
         ],
         "title": "RemoveFederationRuleWorkspaceResponse"
       },
+      "BetaRequestBodyTimeoutErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "request_body_timeout",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "RequestBodyTimeoutErrorDetails",
+        "description": "The request body did not finish arriving in time, so nothing was done. Send a smaller body, or send it over a faster connection."
+      },
       "BetaRoleSchema": {
         "type": "string",
         "enum": [
@@ -188915,7 +192704,7 @@
           "error_code"
         ],
         "title": "SandboxEgressRestrictedErrorDetails",
-        "description": "The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access."
+        "description": "The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access."
       },
       "BetaScanFailedErrorDetails": {
         "properties": {
@@ -189512,6 +193301,36 @@
           "scope"
         ],
         "title": "SetSpendLimitParams"
+      },
+      "BetaSettingsDocumentLimitExceededErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "settings_document_limit_exceeded",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "SettingsDocumentLimitExceededErrorDetails",
+        "description": "The organization has reached its limit of settings documents, counting unused ones. An owner can remove unused documents in claude.ai. Deleting a group's settings or clearing the default settings also frees a document, if nothing else uses it. None of these works once the organization has also reached its settings history limit."
+      },
+      "BetaSettingsHistoryLimitExceededErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "settings_history_limit_exceeded",
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code"
+        ],
+        "title": "SettingsHistoryLimitExceededErrorDetails",
+        "description": "The organization has reached its settings history limit, a cap on stored versions of its settings documents. Nothing in the API or claude.ai lowers the count, so contact support. Creating or deleting group settings, creating or clearing the default settings, and reordering are refused. Changing the mode still works, unless it would copy the organization settings into a new default."
       },
       "BetaSkillNameTakenErrorDetails": {
         "properties": {
@@ -191139,7 +194958,7 @@
               "tool_uses_per_second"
             ],
             "title": "Type",
-            "description": "Rate limiter type."
+            "description": "Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room."
           },
           "value": {
             "anyOf": [
@@ -191200,7 +195019,7 @@
           "type": {
             "type": "string",
             "title": "Type",
-            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`)."
+            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`)."
           },
           "value": {
             "type": "integer",
@@ -195958,7 +199777,7 @@
         "additionalProperties": false,
         "type": "object",
         "title": "ExternalKeyUpdateParams",
-        "description": "Partial update — omitted fields are unchanged.\n\n`display_name` is always editable. `geo` and `provider_config`\ncannot be changed once any workspace references this config."
+        "description": "Partial update — omitted fields are unchanged.\n\n`display_name` is always editable. `geo` and `provider_config`\ncannot be changed once any workspace references this config, and a Google\nCloud key's provider and `key_name` cannot be changed at all."
       },
       "ExternalKeyValidationFailedErrorDetails": {
         "properties": {
@@ -197930,7 +201749,7 @@
           "type": {
             "type": "string",
             "title": "Type",
-            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`)."
+            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`)."
           },
           "value": {
             "type": "integer",
@@ -198608,7 +202427,7 @@
           "error_code"
         ],
         "title": "SandboxEgressRestrictedErrorDetails",
-        "description": "The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access."
+        "description": "The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access."
       },
       "ScopedApiKeyActorSchema": {
         "properties": {
@@ -200338,7 +204157,7 @@
               "tool_uses_per_second"
             ],
             "title": "Type",
-            "description": "Rate limiter type."
+            "description": "Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room."
           },
           "value": {
             "anyOf": [
@@ -200399,7 +204218,7 @@
           "type": {
             "type": "string",
             "title": "Type",
-            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`)."
+            "description": "The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`)."
           },
           "value": {
             "type": "integer",
