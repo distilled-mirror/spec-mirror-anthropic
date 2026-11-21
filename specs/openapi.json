@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Anthropic API"
+    "title": "Claude API"
   },
   "paths": {
     "/v1/messages": {
@@ -104,6 +104,9 @@
                             },
                             {
                               "$ref": "#/components/schemas/CompactionToolChangesMismatchErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/ImageDimensionsTooLargeErrorDetails"
                             },
                             {
                               "$ref": "#/components/schemas/OrganizationOnHoldErrorDetails"
@@ -7797,6 +7800,9 @@
                             },
                             {
                               "$ref": "#/components/schemas/BetaCompactionToolChangesMismatchErrorDetails"
+                            },
+                            {
+                              "$ref": "#/components/schemas/BetaImageDimensionsTooLargeErrorDetails"
                             },
                             {
                               "$ref": "#/components/schemas/BetaOrganizationOnHoldErrorDetails"
@@ -121276,7 +121282,7 @@
                 "type": "null"
               }
             ],
-            "description": "Declares which organization is billed for this request. `{\"type\": \"billing_policy\", \"bill_to\": \"user_profile\"}` bills the customer behind the user profile named in the `anthropic-user-profile-id` header, instead of your organization. If that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you. Omit the field, or send `\"bill_to\": \"self\"` (the default), to be billed as usual.",
+            "description": "Declares which organization is billed for this request. `{\"type\": \"billing_policy\", \"bill_to\": \"user_profile\"}` bills the customer behind the user profile named in the `anthropic-user-profile-id` header, instead of your organization. If that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you. Omit the field, or send `\"bill_to\": \"self\"` (the default), to be billed as usual.\n\nMessage Batches does not currently support billing the customer behind a user profile. In a batch, omit the field or send `\"bill_to\": \"self\"`. A request in a batch that sets `\"bill_to\": \"user_profile\"` gets an `errored` result with an `invalid_request_error`, nobody is billed for it, and the batch's other requests run as usual.",
             "x-anthropic-beta-required": [
               "user-profiles-billing-2026-10-01"
             ]
@@ -123653,6 +123659,36 @@
         ],
         "title": "HeartbeatPreconditionFailedErrorDetails",
         "description": "`expected_last_heartbeat` does not match the stored heartbeat, so another worker may hold the lease."
+      },
+      "BetaImageDimensionsTooLargeErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "image_dimensions_too_large",
+            "title": "Error Code"
+          },
+          "max_side_length_pixels": {
+            "type": "integer",
+            "title": "Max Side Length Pixels",
+            "description": "The limit the images exceeded: the largest width or height, in pixels, that an image on this request may have."
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Paths",
+            "description": "The position of every image over the limit, in the order you sent them, nested blocks included, such as `messages.0.content.1`, or `messages.0.content.1.content.0` for an image in a `tool_result` block."
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "max_side_length_pixels",
+          "paths"
+        ],
+        "title": "ImageDimensionsTooLargeErrorDetails",
+        "description": "The longest side of one or more images in the request exceeds the image size limit. Scale each image in `paths` so that neither side exceeds `max_side_length_pixels`, or remove it, then retry."
       },
       "BetaInputContentBlock": {
         "discriminator": {
@@ -157260,7 +157296,7 @@
           "error_code"
         ],
         "title": "UserProfileBillingNotAuthorizedErrorDetails",
-        "description": "The customer that the named user profile represents has not authorized the caller to bill them, or the authorization that the request's credential uses has ended. The response does not say which applies."
+        "description": "The customer that the request's user profile represents has not authorized the caller to bill them, or the authorization that the request's credential uses has ended. The response does not say which applies."
       },
       "BetaUserProfileEnrollEndUserAction": {
         "description": "The end-user that the profile represents enrolls in a program.",
@@ -157517,7 +157553,7 @@
           "error_code"
         ],
         "title": "UserProfileNotBillableErrorDetails",
-        "description": "The caller is not allowed to bill the user profile that the request names. The response gives no more specific error code and does not say what the reason is."
+        "description": "The request's user profile cannot be billed. The response gives no more specific error code and does not say what the reason is."
       },
       "BetaUserProfileRequiredErrorDetails": {
         "properties": {
@@ -166866,6 +166902,36 @@
             "model_name": "GatewayTimeoutError"
           }
         }
+      },
+      "ImageDimensionsTooLargeErrorDetails": {
+        "properties": {
+          "error_code": {
+            "type": "string",
+            "const": "image_dimensions_too_large",
+            "title": "Error Code"
+          },
+          "max_side_length_pixels": {
+            "type": "integer",
+            "title": "Max Side Length Pixels",
+            "description": "The limit the images exceeded: the largest width or height, in pixels, that an image on this request may have."
+          },
+          "paths": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Paths",
+            "description": "The position of every image over the limit, in the order you sent them, nested blocks included, such as `messages.0.content.1`, or `messages.0.content.1.content.0` for an image in a `tool_result` block."
+          }
+        },
+        "type": "object",
+        "required": [
+          "error_code",
+          "max_side_length_pixels",
+          "paths"
+        ],
+        "title": "ImageDimensionsTooLargeErrorDetails",
+        "description": "The longest side of one or more images in the request exceeds the image size limit. Scale each image in `paths` so that neither side exceeds `max_side_length_pixels`, or remove it, then retry."
       },
       "InputContentBlock": {
         "discriminator": {
@@ -176948,7 +177014,7 @@
           "error_code"
         ],
         "title": "UserProfileBillingNotAuthorizedErrorDetails",
-        "description": "The customer that the named user profile represents has not authorized the caller to bill them, or the authorization that the request's credential uses has ended. The response does not say which applies."
+        "description": "The customer that the request's user profile represents has not authorized the caller to bill them, or the authorization that the request's credential uses has ended. The response does not say which applies."
       },
       "UserProfileCyberProgram": {
         "description": "A user profile's standing in the Cyber Verification Program, which relaxes cyber safeguards for requests that name the profile.",
@@ -177637,7 +177703,7 @@
           "error_code"
         ],
         "title": "UserProfileNotBillableErrorDetails",
-        "description": "The caller is not allowed to bill the user profile that the request names. The response gives no more specific error code and does not say what the reason is."
+        "description": "The request's user profile cannot be billed. The response gives no more specific error code and does not say what the reason is."
       },
       "UserProfileProgramStatus": {
         "type": "string",
